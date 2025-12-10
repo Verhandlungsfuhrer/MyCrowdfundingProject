@@ -57,22 +57,3 @@
     </div>
     
     <script src="app.js"></script>
-    
-    <script>
-        // Проверяем, загрузился ли ethers
-        if (typeof ethers === 'undefined') {
-            console.warn(' Ethers.js не загрузился, пробуем резервный CDN...');
-            const backupScript = document.createElement('script');
-            backupScript.src = 'https://unpkg.com/ethers@6.11.0/dist/ethers.umd.min.js';
-            backupScript.onload = function() {
-                console.log(' Ethers.js загружен через резервный CDN');
-                setTimeout(() => {
-                    console.log(' Перезагрузка страницы...');
-                    location.reload();
-                }, 500);
-            };
-            document.head.appendChild(backupScript);
-        }
-    </script>
-</body>
-</html>
