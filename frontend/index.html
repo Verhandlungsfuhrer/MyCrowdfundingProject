@@ -1,16 +1,11 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crowdfunding dApp</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.0/ethers.umd.min.js" 
-            integrity="sha512-RPQvK0B4rqXG7dUfS3a/FtD9QqjTCBx8CBlWwrCqYhSdl0ClhjDd4NDJ0qmggcHk+OZxM1SdHcKb2hP8Z92eA==" 
-            crossorigin="anonymous" 
-            referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.11.0/dist/ethers.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -28,9 +23,7 @@
         
         <p class="owner"><strong>Владелец:</strong> <span id="owner">0x...</span></p>
         
-        <div class="buttons">
-            <button id="connectBtn" class="btn-primary">Подключить MetaMask</button>
-        </div>
+        <button id="connectBtn" class="btn-primary">Подключить MetaMask</button>
         
         <div class="fund-section">
             <h3>Сделать пожертвование</h3>
@@ -38,10 +31,8 @@
             <button id="fundBtn" class="btn-secondary">Отправить ETH</button>
         </div>
         
-        <div class="admin-buttons">
-            <button id="withdrawBtn" class="btn-warning">Вывести средства (только владелец)</button>
-            <button id="refundBtn" class="btn-warning">Вернуть средства (если цель не достигнута)</button>
-        </div>
+        <button id="withdrawBtn" class="btn-warning">Вывести средства (только владелец)</button>
+        <button id="refundBtn" class="btn-warning">Вернуть средства (если цель не достигнута)</button>
         
         <div class="donations">
             <h3>История пожертвований:</h3>
@@ -49,11 +40,8 @@
                 <li>Пожертвований пока нет</li>
             </ul>
         </div>
-        
-        <div class="network-info">
-            <small>Сеть: <span id="networkName">Не подключено</span></small><br>
-            <small>Адрес контракта: <span id="contractAddress">-</span></small>
-        </div>
     </div>
     
     <script src="app.js"></script>
+</body>
+</html>
