@@ -6,6 +6,11 @@
     <title>Crowdfunding dApp</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.0/ethers.umd.min.js" 
+            integrity="sha512-RPQvK0B4rqXG7dUfS3a/FtD9QqjTCBx8CBlWwrCqYhSdl0ClhjDd4NDJ0qmggcHk+OZxM1SdHcKb2hP8Z92eA==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="container">
@@ -46,16 +51,28 @@
         </div>
         
         <div class="network-info">
-            <small>Сеть: <span id="networkName">Не подключено</span></small>
+            <small>Сеть: <span id="networkName">Не подключено</span></small><br>
             <small>Адрес контракта: <span id="contractAddress">-</span></small>
         </div>
     </div>
     
-    <!-- Подключаем библиотеку ethers.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.0/ethers.umd.min.js" 
-            integrity="sha512-RPQvK0B4rqXG7dUfS3a/FtD9QqjTCBx8CBlWwrCqYhSdl0ClhjDd4NDJ0qmggcHk+OZxM1SdHcKb2hP8Z92eA==" 
-            crossorigin="anonymous" 
-            referrerpolicy="no-referrer"></script>
     <script src="app.js"></script>
+    
+    <script>
+        // Проверяем, загрузился ли ethers
+        if (typeof ethers === 'undefined') {
+            console.warn(' Ethers.js не загрузился, пробуем резервный CDN...');
+            const backupScript = document.createElement('script');
+            backupScript.src = 'https://unpkg.com/ethers@6.11.0/dist/ethers.umd.min.js';
+            backupScript.onload = function() {
+                console.log(' Ethers.js загружен через резервный CDN');
+                setTimeout(() => {
+                    console.log(' Перезагрузка страницы...');
+                    location.reload();
+                }, 500);
+            };
+            document.head.appendChild(backupScript);
+        }
+    </script>
 </body>
 </html>
