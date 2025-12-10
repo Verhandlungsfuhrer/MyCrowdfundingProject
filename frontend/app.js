@@ -160,13 +160,14 @@ window.addEventListener('DOMContentLoaded', async () => {
     const amountInput = document.getElementById('amount');
     const progressFill = document.getElementById('progress');
     const donationsList = document.getElementById('donationsList');
-    const networkNameEl = document.getElementById('networkName');
     const contractAddressEl = document.getElementById('contractAddress');
 
     let provider, signer, contract, userAddress;
 
     // Инициализация при загрузке
-    contractAddressEl.textContent = contractAddress;
+    if (contractAddressEl) {
+        contractAddressEl.textContent = contractAddress;
+    }
     
     // Проверка наличия MetaMask
     if (!window.ethereum) {
@@ -188,10 +189,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             // Обновляем интерфейс
             connectBtn.textContent = `Подключен: ${userAddress.slice(0, 6)}...${userAddress.slice(-4)}`;
             connectBtn.classList.add('connected');
-            
-            // Получаем информацию о сети
-            const network = await provider.getNetwork();
-            networkNameEl.textContent = network.name === 'unknown' ? 'Sepolia' : network.name;
             
             // Загружаем данные контракта
             await loadContractData();
