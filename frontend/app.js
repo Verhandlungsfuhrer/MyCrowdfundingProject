@@ -163,44 +163,45 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Функция пожертвования
-    fundBtn.onclick = async () => {
-        if (!contract) {
-            alert('Сначала подключите MetaMask!');
-            return;
-        }
+   fundBtn.onclick = async () => {
+    if (!contract) {
+        alert('Сначала подключите MetaMask!');
+        return;
+    }
+    
+    const ethAmount = amountInput.value;
+    if (!ethAmount || Number(ethAmount) <= 0) {
+        alert('Введите корректную сумму');
+        return;
+    }
+    
+    try {
+        fundBtn.disabled = true;
+        fundBtn.textContent = 'Подготовка...';
         
-        const ethAmount = amountInput.value;
-        if (!ethAmount || Number(ethAmount) <= 0) {
-            alert('Введите корректную сумму (больше 0)');
-            return;
-        }
+        const tx = await contract.fund({
+            value: ethers.parseEther(ethAmount)
+        });
         
-        try {
-            fundBtn.disabled = true;
-            fundBtn.textContent = 'Отправка...';
-            
-            const tx = await contract.fund({
-                value: ethers.parseEther(ethAmount)
-            });
-            
-            await tx.wait();
-            await loadContractData();
-            
-            fundBtn.disabled = false;
-            fundBtn.textContent = 'Отправить ETH';
-            amountInput.value = '0.001';
-            
-            alert('Пожертвование успешно отправлено!');
-            
-        } catch (error) {
-            console.error('Ошибка пожертвования:', error);
-            alert(`Ошибка: ${error.reason || error.message}`);
-            
-            fundBtn.disabled = false;
-            fundBtn.textContent = 'Отправить ETH';
+        fundBtn.textContent = 'Ожидаем подтверждения...';
+        await tx.wait();
+        
+        await loadContractData();
+        amountInput.value = '0.001';
+        alert('Транзакция успешна!');
+        
+    } catch (error) {
+        console.error('Ошибка:', error);
+        if (error.code === 'ACTION_REJECTED') {
+            alert('Вы отклонили транзакцию');
+        } else {
+            alert('Ошибка: ' + (error.reason || error.message));
         }
-    };
-
+    } finally {
+        fundBtn.disabled = false;
+        fundBtn.textContent = 'Отправить ETH';
+    }
+};
     // Функция вывода средств (только владелец)
     withdrawBtn.onclick = async () => {
         if (!contract) {
