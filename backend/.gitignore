@@ -1,0 +1,19 @@
+# Foundry
+out/
+cache/
+broadcast/
+
+# Среда
+.env
+.env.local
+
+# Системные
+.DS_Store
+Thumbs.db
+
+# Локальные настройки
+*.local.*
+
+# Ключи
+*.pem
+*.key

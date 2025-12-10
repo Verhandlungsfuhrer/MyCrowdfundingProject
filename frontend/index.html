@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdfunding dApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <h1 id="projectName">Загрузка...</h1>
+        <p id="description"></p>
+        
+        <div class="stats">
+            <p><strong>Цель:</strong> <span id="goal">0</span> ETH</p>
+            <p><strong>Собрано:</strong> <span id="totalFunds">0</span> ETH</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div id="progress" class="progress-fill"></div>
+        </div>
+        
+        <p class="owner"><strong>Владелец:</strong> <span id="owner">0x...</span></p>
+        
+        <div class="buttons">
+            <button id="connectBtn" class="btn-primary">Подключить MetaMask</button>
+        </div>
+        
+        <div class="fund-section">
+            <h3>Сделать пожертвование</h3>
+            <input id="amount" type="number" step="0.001" min="0.001" placeholder="0.001" value="0.001">
+            <button id="fundBtn" class="btn-secondary">Отправить ETH</button>
+        </div>
+        
+        <div class="admin-buttons">
+            <button id="withdrawBtn" class="btn-warning">Вывести средства (только владелец)</button>
+            <button id="refundBtn" class="btn-warning">Вернуть средства (если цель не достигнута)</button>
+        </div>
+        
+        <div class="donations">
+            <h3>История пожертвований:</h3>
+            <ul id="donationsList">
+                <li>Пожертвований пока нет</li>
+            </ul>
+        </div>
+        
+        <div class="network-info">
+            <small>Сеть: <span id="networkName">Не подключено</span></small>
+            <small>Адрес контракта: <span id="contractAddress">-</span></small>
+        </div>
+    </div>
+    
+    <!-- Подключаем библиотеку ethers.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.0/ethers.umd.min.js" 
+            integrity="sha512-RPQvK0B4rqXG7dUfS3a/FtD9QqjTCBx8CBlWwrCqYhSdl0ClhjDd4NDJ0qmggcHk+OZxM1SdHcKb2hP8Z92eA==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+    <script src="app.js"></script>
+</body>
+</html>
