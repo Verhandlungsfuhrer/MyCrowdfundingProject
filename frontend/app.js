@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', async () => {
-    const contractAddress = "0xe8194772fc16b0418b6d2c0473a9cf5923a082bfe546708770f3e7f9238e0b03"; 
+    const contractAddress = "0x7675b4293a2d5d784a7d975dea1600342c9de4f8"; 
     const contractABI = [
         {
             "inputs": [
