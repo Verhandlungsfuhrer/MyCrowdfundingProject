@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', async () => {
-    const contractAddress = "0x7675b4293a2d5d784a7d975dea1600342c9de4f8"; 
+    const contractAddress = "0xBa41Ad7573eF41AE2D5dc78dED6cc44BbD511e1c"; 
     const contractABI = [
         {
             "inputs": [
@@ -390,4 +390,5 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (window.ethereum.selectedAddress) {
         connectBtn.click();
     }
+
 });
