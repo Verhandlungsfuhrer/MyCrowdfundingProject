@@ -89,7 +89,6 @@ contract Crowdfunding {
         isWithdrawn = true;
         uint256 amount = address(this).balance;
         
-        // Используем call вместо transfer для лучшей совместимости
         (bool success, ) = payable(owner).call{value: amount}("");
         require(success, "Transfer failed");
         
